@@ -2,5 +2,27 @@
     <div class="container">
         <h1> Welcome to my blog!</h1>
     </div>
-
+    <% if (locals.posts.length > 0) { %>
+        <div class = "container">
+            <% posts.forEach((post) => { %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <a href="/post"><h2><%= post.title %></h2></a>
+                        </div>
+                        <div class="card-text">
+                            <p><%= post.content %></p>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+            <a href="/create-post" class="btn">Create More Posts</a>
+        </div>
+    <% } else { %>
+        <div class="container">
+            <p> No posts yet!</p>
+            <a href="/create-post" class="btn">Create First Post</a>
+        </div>
+    <% } %>
+    
 <%- (include("partials/footer")) %>
