@@ -5,13 +5,17 @@
     <% if (locals.posts.length > 0) { %>
         <div class = "container">
             <% posts.forEach((post) => { %>
-                <div class="card mb-3">
+                <div class="card">
                     <div class="card-body">
                         <div class="card-title">
                             <a href="/post/<%= post.slug %>"><h2><%= post.title %></h2></a>
                         </div>
                         <div class="card-text">
                             <p><%= post.content %></p>
+                        </div>
+                        <div class="button-row">
+                            <a href="/post/<%= post.slug %>/edit" class="btn btn-edit">Edit post</a>
+                            <a href="/post/<%= post.slug %>/delete" class="btn btn-delete">Delete post</a>
                         </div>
                     </div>
                 </div>

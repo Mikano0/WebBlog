@@ -43,6 +43,38 @@ app.get("/post/:slug", (req, res) => {
         res.render("post", {post: null});
     }
 })
+
+app.get("/post/:slug/edit", (req, res) => {
+    const slug = req.params.slug;
+    const post = posts.find( p => createSlug(p. title) === slug);
+    if (post){
+        res.render("editpost", {post: post});
+    } else {
+        res.render("editpost", {post: null});
+    }
+});
+
+app.post("/post/:slug/edit", (req, res) => {
+    const slug = req.params.slug;
+    const post = posts.find( p => createSlug(p. title) === slug);
+    if(post){
+        post.title = req.body.title;
+        post.content = req.body.content;
+        post.slug = createSlug(post.title);
+    }
+    res.redirect("/");
+});
+
+app.get("/post/:slug/delete", (req, res) => {
+    const slug = req.params.slug;
+    const post = posts.find( p => createSlug(p. title) === slug);
+    if (post){
+        posts = posts.filter(p => createSlug(p. title) !== slug);
+    }
+    res.redirect("/");
+})
+
+
 app.listen(port, () => {
     console.log("Server is running on port " + port);
 });
